@@ -15,7 +15,7 @@ String cadena; // resguarda el string de entrada por el serial (tipo de función
 
 void setup()
 {
-  Serial.begin(115200); // establecer frecuencia
+  Serial.begin(115200); // Iniciar comunicación serial
   pinMode(entrada, INPUT); // A0 como un pin de entrada
   pinMode(13, OUTPUT); // 13 como pin de salida
   t = 0; // variable de tiempo
@@ -24,15 +24,15 @@ void setup()
 float sine(int valor, int t) //función sinusoidal
 {
 	float omega = (2 * PI) / valor; //Determinar valor Omega de la función seno
-  	float salida = 2.5 + 2.5 * sin(omega * t);
+  	float salida = 2.5 + 2.5 * sin(omega * t); //Aplicar fórmula de seno
   	return salida;
 }
 
 float square(int valor, int t) //función cuadrada
 {
   	float medio_periodo = (float) valor;
-  	medio_periodo = medio_periodo / 2.0;
-  	int modulo = t % valor;
+  	medio_periodo = medio_periodo / 2.0; //Establecer período medio para variar la función
+  	int modulo = t % valor; //Asignar correctamente el tiempo en función del período
   	float modulo_float = (float) modulo;
   	if (modulo_float <= medio_periodo)
     {
@@ -47,8 +47,8 @@ float square(int valor, int t) //función cuadrada
 float triangle(int valor, int t) //función triangular
 {
     float salida;
-	float medio_periodo = ((float) valor) / 2.0;
-  	float modulo = (float) (t % valor);
+	float medio_periodo = ((float) valor) / 2.0; //Establecer período medio para variar la función
+  	float modulo = (float) (t % valor); //Asignar correctamente el tiempo en función del período
   	if (modulo <= medio_periodo)
     {
         salida = (modulo) * (5.0) / (periodo);
