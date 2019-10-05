@@ -27,7 +27,8 @@ float triangulo() //función triangular
     }
   else
     {
-  		return 2.5+(((periodo_temporal - 0) * (5.0 - 0.0) / (valor_conversion - 0.0) + 0.0));    }
+  		return 2.5+(((periodo_temporal - 0) * (5.0 - 0.0) / (valor_conversion - 0.0) + 0.0));    
+    }
 }
 
 float seno(float numero,float periodo) //función sinusoidal
