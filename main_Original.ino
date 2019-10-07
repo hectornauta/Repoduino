@@ -52,13 +52,13 @@ float triangle(int valor, int t) //función triangular
   	if (modulo <= medio_periodo)
     {
         salida = (modulo) * (5.0) / (periodo);
-        salida = 2.5 + salida;
+        salida = 2.5 + salida; //2.5 por el ajuste a cero ficticio
         return salida;
     }
     else
     {
         salida = (modulo) * (5.0) / (periodo);
-        salida = 5.0 + 2.5 - salida;
+        salida = 5.0 + 2.5 - salida; // 5 por empezar en 5V y 2.5 por el ajuste a cero ficticio
         return salida;  
     }
 }
@@ -68,27 +68,27 @@ void loop()
 {
   	lectura = analogRead(A0); //lectura del valor de la entrada (potenciómetro)  
   	periodo = map(lectura, 0, 1023, 1, 1024); // mapeo del valor de la entrada
-    float voltaje = lectura * (5.0 / 1023.0);
+    float voltaje = lectura * (5.0 / 1023.0); // Conversión a voltaje recibido
   	while (Serial.available() > 0) // lectura de la entrada para determinar la función a usar
   	{
   		cadena = Serial.readStringUntil(' ');
   	}
-  	if (cadena == "SQUARE")
+    if (cadena == "SQUARE")
     {
-    	salida = square(periodo, t);
+        salida = square(periodo, t);
     }
-  	else if (cadena == "TRIANGLE")
-  	{
-    	salida = triangle(periodo, t);
-    }
-  	else if (cadena == "SINE")
+    else if (cadena == "TRIANGLE")
     {
-    	salida = sine(periodo, t);
+        salida = triangle(periodo, t);
     }
-  	else
-  	{
-    	salida = voltaje;
-      	//Serial.println("Sin funcion de entrada");
+    else if (cadena == "SINE")
+    {
+        salida = sine(periodo, t);
+    }
+    else
+    {
+        salida = voltaje;
+        //Serial.println("Sin funcion de entrada");
     }
   	Serial.println(salida);
     analogWrite(13,salida);
