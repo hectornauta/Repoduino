@@ -1,4 +1,4 @@
-int buttonpin = 3;
+int buttonpin = 22;
 int valor;
 void setup ()
 {
