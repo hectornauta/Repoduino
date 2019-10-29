@@ -8,31 +8,28 @@
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 
-//-------- Modify these values -----------
+// Adaptar estos valores
 
-const char* ssid = "YOUR_SSID";      // The name of your Internet BTW
-const char* password = "YOUR_PASS";  // Your pass 
+const char* ssid = "YOUR_SSID";      // Nombre de la red WiFi
+const char* password = "YOUR_PASS";  // Contraseña de la red WiFi
 
-#define ORG "YOUR_ORGANIZATION_ID" // This information is in the previous image
-#define DEVICE_ID "Test001"        //  Only for this Example 
-#define DEVICE_TYPE "ESP8266"      // your device type 
-#define TOKEN "YOUR_TOKEN"         // your device token
-
-
-//-------- Modify these values --------
+#define ORG "YOUR_ORGANIZATION_ID" // Nombre de la organización
+#define DEVICE_ID "Test001"        // ID del dispositivo 
+#define DEVICE_TYPE "ESP8266"      // Tipo del dispositivo
+#define TOKEN "YOUR_TOKEN"         // Token del dispositivo
 
 char server[] = ORG ".messaging.internetofthings.ibmcloud.com";
-char TopicSub[] = "iot-2/cmd/status/fmt/json";
-char TopicPub[] = "iot-2/evt/status/fmt/json"; 
-// This is the topic that needs to be put in order for data to be sent and recieve in the platform, NOT MODIFY.
+char TopicSub[] = "iot-2/cmd/status/fmt/json"; // No modificar
+char TopicPub[] = "iot-2/evt/status/fmt/json"; // No modificar
+
 char authMethod[] = "use-token-auth";
 char token[] = TOKEN;
 char clientId[] = "d:" ORG ":" DEVICE_TYPE ":" DEVICE_ID;
-unsigned int Delay = 30;    // This time is what the device will take to send data
+unsigned int Delay = 30;    // Tiempo que el dispositivo va a tomar para envar los datos
 unsigned int i=(Delay*100);
 
 WiFiClient wifiClient;
-PubSubClient client(server, 1883,NULL, wifiClient); //Never modify the 8883 as it is a safe port for sending data
+PubSubClient client(server, 1883,NULL, wifiClient);
 
 
 void callback(char* topic, byte* payload, unsigned int length) 
@@ -42,7 +39,7 @@ void callback(char* topic, byte* payload, unsigned int length)
   {
     data+=char(payload[i]);
   }
-  Serial.println("Received Data:" + data); // In this case we print the data recive from the website.
+  Serial.println("Received Data:" + data); // Se imprime la información recibida desde el sitio web.
 }
 
 void setup() {
@@ -58,13 +55,12 @@ void setup() {
   Serial.println("");
   
   Serial.print("WiFi connected, IP address: "); Serial.println(WiFi.localIP());
-  client.setCallback(callback); // Here we "connect"the callback function to subscribe data receive
+  client.setCallback(callback); // Conectamos la función callback para recibir datos.
 }
 
 void loop() {
   client.loop();
-   
-   // Do not modify the delay of 500 ms since it depends on the correct connection.
+
    if (!!!client.connected()) 
    {
      Serial.print("Reconnecting client to "); 
@@ -72,24 +68,24 @@ void loop() {
      while ( !!!client.connect(clientId, authMethod, token)) 
      {
         Serial.print(".");
-        delay(500);
+        delay(500); // No modificar
      }
      Serial.println();
-     client.subscribe(TopicSub);  // This is for callback
+     client.subscribe(TopicSub);  // Esto es para el callback
    }
 
   if(i>=(Delay*100)) 
   {
-    String payload ="Hello IBM"; // Data sent, you can also send a json if you want.
+    String payload ="Hello IBM"; // La información que se va a enviar, se puede reemplazar por un JSON
     Serial.print("Sending payload: "); Serial.println(payload);
       
     if (client.publish(TopicPub, (char*) payload.c_str())) 
     {
-      Serial.println("Publish ok");
+      Serial.println("Publish ok"); // Envio correcto
     } 
     else 
     {
-      Serial.println("Publish failed");
+      Serial.println("Publish failed"); // Fallo en el envio
     }
     i=0;
   }
