@@ -10,13 +10,14 @@
 
 //-------- Modify these values -----------
 
-const char* ssid = "YOUR_SSID";      // The name of your Internet BTW
-const char* password = "YOUR_PASS";  // Your pass 
 
-#define ORG "YOUR_ORGANIZATION_ID" // This information is in the previous image
-#define DEVICE_ID "Test001"        //  Only for this Example 
-#define DEVICE_TYPE "ESP8266"      // your device type 
-#define TOKEN "YOUR_TOKEN"         // your device token
+const char* ssid = "AndroidAP";      // SSID de la red
+const char* password = "mxya6982";  // contraseña
+
+#define ORG "qi3scd" // ORG ID
+#define DEVICE_ID "807D3A6E34AA"        //  ID dispositivo
+#define DEVICE_TYPE "ESP8266"      // Tipo Dispositivo
+#define TOKEN "OU6Ay17&TwacfZ!C?d"         // TOKEN agregado o autogenerado
 
 
 //-------- Modify these values --------
