@@ -10,13 +10,13 @@
 
 //-------- Modify these values -----------
 
-const char* ssid = "YOUR_SSID";      // The name of your Internet BTW
-const char* password = "YOUR_PASS";  // Your pass 
+const char* ssid = "REDWIFI";      // The name of your Internet BTW
+const char* password = "PASSWORD";  // Your pass 
 
-#define ORG "YOUR_ORGANIZATION_ID" // This information is in the previous image
-#define DEVICE_ID "Test001"        //  Only for this Example 
-#define DEVICE_TYPE "ESP8266"      // your device type 
-#define TOKEN "YOUR_TOKEN"         // your device token
+#define ORG "ORG" // This information is in the previous image
+#define DEVICE_ID "arduino"        //  Only for this Example 
+#define DEVICE_TYPE "arduino"      // your device type 
+#define TOKEN "TOKEN"         // your device token
 
 
 //-------- Modify these values --------
