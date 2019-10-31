@@ -10,13 +10,13 @@
 
 //-------- credenciales WIFI y IBM Watson -----------------------
 
-const char* ssid = "***********";      // ssid
-const char* password = "********";  // password
+const char* ssid = "Raspberry-Pruebas";      // ssid
+const char* password = "CLAVEMAESTRA";  // password
 
-#define ORG "*****" // ORG IBM IoT
+#define ORG "wv2p89" // ORG IBM IoT
 #define DEVICE_ID "sensores"        //  id dispositivo 
 #define DEVICE_TYPE "ESP8266"      // tipo de dispositivo
-#define TOKEN "**************"         // Token dispositivo autognerado
+#define TOKEN "wD7g(xz5HUfeqDRPGX"         // Token dispositivo autognerado
 
 char server[] = ORG ".messaging.internetofthings.ibmcloud.com";
 char TopicSub[] = "iot-2/cmd/status/fmt/json"; // topico suscripto
@@ -25,8 +25,8 @@ char TopicPub[] = "iot-2/evt/status/fmt/json"; //tópico a publicar
 char authMethod[] = "use-token-auth";
 char token[] = TOKEN;
 char clientId[] = "d:" ORG ":" DEVICE_TYPE ":" DEVICE_ID;
-unsigned int Delay = 10;    // Tiempo que el dispositivo va a tomar para envar los datos
-unsigned int i=(Delay*100);
+//unsigned int Delay = 10;    // Tiempo que el dispositivo va a tomar para envar los datos
+//unsigned int i=(Delay*100);
 
 WiFiClient wifiClient;
 PubSubClient client(server, 1883,NULL, wifiClient);
@@ -38,6 +38,9 @@ int tactil_read;
 int hall_pin = 5;
 int hall_read;
 
+int publishInterval = 10000; // intervalo de lectura: 10 segundos
+long lastPublishMillis;
+
 void callback(char* topic, byte* payload, unsigned int length) 
 {
   String data="";
@@ -48,29 +51,19 @@ void callback(char* topic, byte* payload, unsigned int length)
   Serial.println("Recibiendo datos:" + data); // Se imprime la información recibida desde el sitio web.
 }
 
-void setup() {
-  Serial.begin(115200); 
-  Serial.println();
-  // Configuración para sensor táctil
-  pinMode(tactil_pin,INPUT);
-  pinMode(hall_pin,INPUT);  
-  
+void wifiConnect() {// maneja la conexión a la red WiFi
   Serial.print("Conectando a "); Serial.print(ssid);
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
      delay(500);
      Serial.print(".");
   }  
-  Serial.println("");
-  
+  Serial.println("");  
   Serial.print("WiFi conectado, IP: "); Serial.println(WiFi.localIP());
-  client.setCallback(callback); // Conectamos la función callback para recibir datos.
 }
 
-void loop() {
-  client.loop();
-
-   if (!!!client.connected()) 
+void mqttConnect() {// maneja la conexion por MQTT
+ if (!!!client.connected()) 
    {
      Serial.print("Reconectando cliente a "); 
      Serial.println(server);
@@ -80,10 +73,27 @@ void loop() {
         delay(500);
      }
      Serial.println();
-     client.subscribe(TopicSub);  // Esto es para el callback
+     client.subscribe(TopicSub); 
    }
+}
 
-  if(i>=(Delay*100)) 
+
+void setup() {
+  Serial.begin(115200); 
+  Serial.println();
+
+  pinMode(tactil_pin,INPUT);
+  pinMode(hall_pin,INPUT);  
+
+  wifiConnect();
+  
+}
+
+void loop() {
+  client.loop();
+  mqttConnect();
+  
+  if (millis() - lastPublishMillis > publishInterval) 
   {
     String valueTact = get_tactil();
     String valueHall = get_hall();
@@ -103,19 +113,16 @@ void loop() {
     {
       Serial.println("Problemas al prublicar"); // Fallo en el envio
     }
-    i=0;
+    lastPublishMillis = millis();
   }
-  else
-  {
-    i++;
-    delay(10);
-  }
+
 }
 
 String get_tactil()// obtención del valor leido por el sensor de tacto 
 {
   tactil_read = digitalRead(tactil_pin);
   if (tactil_read == HIGH){
+    Serial.println(hall_read); 
     return "1";
   }
   return "0";
