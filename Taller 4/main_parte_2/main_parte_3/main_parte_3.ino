@@ -22,7 +22,7 @@ int salida2;
 
 void setup()
 {
-  Serial.begin(115200); // Iniciar comunicación serial
+  Serial.begin(9600); // Iniciar comunicación serial
   pinMode(entrada, INPUT); // A0 como un pin de entrada
   pinMode(10, OUTPUT); // 13 como pin de salida
   pinMode(11, OUTPUT); // 13 como pin de salida
