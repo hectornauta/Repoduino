@@ -1,11 +1,3 @@
-function elementos_json = captura(arduino)
-    // Devuelve un arreglo de estructuras que contienen los datos capturados
-    // Ej: [captura_1, captura_2, ..., captura_n]
-    captura_serial = readserial(arduino);
-    elementos_json = JSONParse(captura_serial);
-
-endfunction
-
 function graficar(elementos_json, atributos)
     //i = 1;
     n = length(elementos_json)
