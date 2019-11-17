@@ -8,7 +8,7 @@ function main()
         data = capture(arduino)
         plot(time, data, '.')
     end
-    // closeserial(port)
+    close_source(port)
 endfunction
 
 // Entrypoint
