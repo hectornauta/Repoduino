@@ -1,5 +1,5 @@
-function arduino = get_source(port, configs)
-// Description of get_source(input)
+function arduino = open_source(port, configs)
+// Description of open_source(input)
     try
         disp("Abriendo el puerto " + string(port) + " a " + string(bauds) + " baudios")
         arduino = openserial(port, configs)

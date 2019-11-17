@@ -1,7 +1,7 @@
 getd("./macros")
 function main()
     [port, configs, limit] = get_configs()
-    arduino = get_source(port, configs)
+    arduino = open_source(port, configs)
     start = getdate("s")
     tic()
     while toc() < limit
