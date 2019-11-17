@@ -16,4 +16,4 @@ endfunction
 
 // Entrypoint
 main()
-exit
+break
