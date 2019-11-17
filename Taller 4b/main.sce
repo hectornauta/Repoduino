@@ -4,7 +4,6 @@ function main()
     arduino = get_source(port, configs)
     start = getdate("s")
     tic()
-    band = %t
     while toc() < limit
         // TODO: Aquí adentro tratar la captura de datos y graficación
         data = capture(arduino)
