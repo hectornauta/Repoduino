@@ -2,7 +2,6 @@ getd("./macros")
 function main()
     [port, configs, limit] = get_configs()
     arduino = open_source(port, configs)
-    start = getdate("s")
     tic()
     while toc() < limit
         // TODO: Aquí adentro tratar la captura de datos y graficación
