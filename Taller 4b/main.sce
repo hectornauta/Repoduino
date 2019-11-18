@@ -4,9 +4,9 @@ function main()
     arduino = open_source(port, configs)
     tic()
     while toc() < limit
-        // TODO: Aquí adentro tratar la captura de datos y graficación
-        data = capture(arduino)
-        plot(time, data, '.')
+        data = cat(data, capture(arduino))
+        // TODO: Plot data using plot2d function.
+        disp(data)
     end
     close_source(port)
 endfunction
