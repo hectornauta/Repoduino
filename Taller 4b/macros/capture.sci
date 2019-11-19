@@ -6,7 +6,8 @@ function data = capture(arduino)
     else
         sine = "''sine'':" + string(sin(toc()))
         cosine = "''cosine'':" + string(cos(toc()))
-        serial_entry = "{" + sine + "," + cosine + "}"
+        tangent = "''tangent'':" + string(tan(toc()))
+        serial_entry = "{" + sine + "," + cosine + "," + tangent + "}"
     end
     data = JSONParse(serial_entry);
 endfunction
