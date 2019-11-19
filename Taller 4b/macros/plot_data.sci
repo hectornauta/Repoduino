@@ -1,4 +1,4 @@
-function graficar(elementos_json, atributos)
+function plot_data(data, rows, columns, field_amount, field_names)
     //i = 1;
     n = length(elementos_json)
     n_atributos = size(atributos, 'c') //devuelve la cantidad de columnas que tiene el arreglo
