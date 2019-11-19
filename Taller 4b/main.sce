@@ -4,7 +4,7 @@ function main()
     arduino = open_source(port, configs)
     tic()
     data = capture(arduino)
-    field_names = fieldnames(data)
+    field_names = get_field_names(data)
     [rows, columns, field_amount] = define_plot(field_names)
     while toc() < limit
         data = cat(1, data, capture(arduino))
