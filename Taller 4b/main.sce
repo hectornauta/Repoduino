@@ -5,6 +5,7 @@ function main()
     tic()
     data = capture(arduino)
     field_names = fieldnames(data)
+    [rows, columns, field_amount] = define_plot(field_names)
     while toc() < limit
         data = cat(1, data, capture(arduino))
         // TODO: Plot data using plot2d function.
