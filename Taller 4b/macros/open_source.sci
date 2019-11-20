@@ -4,7 +4,9 @@ function arduino = open_source(port, configs)
         disp("Abriendo el puerto " + string(port) + " a " + string(bauds) + " baudios")
         arduino = openserial(port, configs)
     catch
-        disp("Error al abrir la comunicación serial, utilizando datos de prueba")
+        disp("Error al abrir la comunicación serial, utilizando la siguiente configuración: ")
+        disp("Puerto: " + string(port))
+        disp("Configuraciones: " + string(configs))
         arduino = -1
     end
 endfunction
