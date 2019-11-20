@@ -1,6 +1,6 @@
 getd("./macros")
 function main()
-    [port, configs, limit] = get_configs()
+    [port, configs, limit, sleep_time] = get_configs()
     arduino = open_source(port, configs)
     tic()
     data = capture(arduino)
@@ -15,7 +15,7 @@ function main()
             data = data(2:$) // Descartamos el primer elemento de la lista
             t = t + 1
         end
-        sleep(100)
+        sleep(sleep_time)
     end
     close_source(port)
 endfunction
