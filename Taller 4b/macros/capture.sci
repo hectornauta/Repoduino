@@ -2,7 +2,12 @@ function data = capture(arduino)
     // Devuelve una lista de estructuras que contienen los datos capturados
     // Ej: [captura_1, captura_2, ..., captura_n]
     if arduino <> -1 then
-        serial_entry = readserial(arduino);
+        try
+            serial_entry = readserial(arduino);
+        catch
+            disp("Arduino desconectado, finalizando el programa")
+            quit
+        end
     else
         sine = "''sine'':" + string(sin(toc()))
         cosine = "''cosine'':" + string(cos(toc()))
