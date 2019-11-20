@@ -15,7 +15,7 @@ void loop() {
   delay(100);
   sine = sin(t);
   cosine = cos(t);
-  json = "\'sine\':" + (String) sine + "\'cosine\':" + (String) cosine;
+  json = "\'sine\':" + (String) sine + "," + "\'cosine\':" + (String) cosine;
   json = "{" + json + "}";
   Serial.println(json);
   t = t + 1;  
