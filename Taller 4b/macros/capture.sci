@@ -1,4 +1,4 @@
-function data = capture(arduino)
+function [data, field_names] = capture(arduino)
     // Devuelve una lista de estructuras que contienen los datos capturados
     // Ej: [captura_1, captura_2, ..., captura_n]
     if arduino <> -1 then
@@ -15,4 +15,7 @@ function data = capture(arduino)
         serial_entry = "{" + sine + "," + cosine + "," + tangent + "}"
     end
     data = JSONParse(serial_entry);
+    field_names = fieldnames(data);
+    disp("Información detectada en los datos capturados: ");
+    disp(field_names);
 endfunction
