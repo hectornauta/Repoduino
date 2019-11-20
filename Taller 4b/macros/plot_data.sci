@@ -8,3 +8,4 @@ function plot_data(data, rows, columns, field_amount, field_names, t)
         subplot(rows, columns, i)
         plot2d([t, t+1], [y1, y2])
     end
+endfunction

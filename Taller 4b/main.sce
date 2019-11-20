@@ -11,8 +11,8 @@ function main()
         data = cat(1, data, capture(arduino))
         // TODO: Plot data using plot2d function.
         while size(data, "r") > 1
-            //plot_data()
-            //data(1) = null()
+            plot_data(data, rows, columns, field_amount, field_names, t)
+            data = data(2:$) // Descartamos el primer elemento de la lista
             t = t + 1
         end
         sleep(100)

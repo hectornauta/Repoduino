@@ -11,7 +11,6 @@ function [rows, columns, field_amount] = define_plot(field_names)
     disp("Cantidad de columnas del gráfico: " + string(columns))
     for i = 1:field_amount
         subplot(rows, columns, i)
-        plot2d()
         title(field_names(i))
     end
     drawnow()
