@@ -15,7 +15,9 @@ function main()
             data = data(2:$) // Descartamos el primer elemento de la lista
             t = t + 1
         end
-        sleep(sleep_time)
+        if sleep_time > 0
+            sleep(sleep_time)
+        end
     end
     close_source(port)
 endfunction
