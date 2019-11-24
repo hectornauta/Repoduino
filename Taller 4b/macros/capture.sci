@@ -17,6 +17,4 @@ function [data, field_names] = capture(arduino)
     end
     data = JSONParse(serial_entry)
     field_names = fieldnames(data)
-    disp("Información detectada en los datos capturados: ")
-    disp(field_names)
 endfunction

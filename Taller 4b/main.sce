@@ -3,7 +3,9 @@ function main()
     [port, configs, limit, sleep_time] = get_configs()
     arduino = open_source(port, configs)
     tic()
-    [data, field_names] = capture(arduino);
+    [data, field_names] = capture(arduino)
+    disp("Información detectada en los datos capturados: ")
+    disp(field_names)
     [rows, columns, field_amount] = define_plot(field_names)
     t = 0
     while toc() < limit
