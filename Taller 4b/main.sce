@@ -28,9 +28,5 @@ function main()
 endfunction
 
 // Entrypoint
-try
-    main()
-catch
-    close_source(port)
-end
+main()
 break
