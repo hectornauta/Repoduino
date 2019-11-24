@@ -8,6 +8,7 @@ function [data, field_names] = capture(arduino)
             disp("Arduino desconectado, finalizando el programa")
             abort
         end
+        disp(serial_entry)
         serial_entry = clean_data(serial_entry)
     else
         sine = "''sine'':" + string(sin(toc()))
