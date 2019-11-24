@@ -4,11 +4,11 @@ function [data, field_names] = capture(arduino)
     if arduino <> -1 then
         try
             serial_entry = readserial(arduino)
-            serial_entry = clean_data(serial_entry)
         catch
             disp("Arduino desconectado, finalizando el programa")
-            quit
+            abort
         end
+        serial_entry = clean_data(serial_entry)
     else
         sine = "''sine'':" + string(sin(toc()))
         cosine = "''cosine'':" + string(cos(toc()))
