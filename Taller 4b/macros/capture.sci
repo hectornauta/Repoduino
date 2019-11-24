@@ -3,7 +3,8 @@ function [data, field_names] = capture(arduino)
     // Ej: [captura_1, captura_2, ..., captura_n]
     if arduino <> -1 then
         try
-            serial_entry = readserial(arduino);
+            serial_entry = readserial(arduino)
+            serial_entry = clean_data(serial_entry)
         catch
             disp("Arduino desconectado, finalizando el programa")
             quit
@@ -14,8 +15,8 @@ function [data, field_names] = capture(arduino)
         tangent = "''tangent'':" + string(tan(toc()))
         serial_entry = "{" + sine + "," + cosine + "," + tangent + "}"
     end
-    data = JSONParse(serial_entry);
-    field_names = fieldnames(data);
-    disp("Información detectada en los datos capturados: ");
-    disp(field_names);
+    data = JSONParse(serial_entry)
+    field_names = fieldnames(data)
+    disp("Información detectada en los datos capturados: ")
+    disp(field_names)
 endfunction
