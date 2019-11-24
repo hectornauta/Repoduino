@@ -1,7 +1,7 @@
 function arduino = open_source(port, configs)
 // Description of open_source(input)
     try
-        disp("Abriendo el puerto " + string(port) + " a " + string(bauds) + " baudios")
+        disp("Abriendo el puerto " + string(port) + " con la configuración: " + configs)
         arduino = openserial(port, configs)
     catch
         disp(lasterror())
