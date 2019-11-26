@@ -17,6 +17,7 @@ void loop() {
   cosine = cos(t);
   json = "\'sine\':" + (String) sine + "," + "\'cosine\':" + (String) cosine;
   json = "{" + json + "}";
+  //  Serial.println("{\'sine\':" + (String) sin(t) + "," + "\'cosine\':" + (String) cos(t) + "}");
   Serial.println(json);
   t = t + 1;  
 
