@@ -2,6 +2,7 @@ int t;
 float sine;
 float cosine;
 String json;
+String tstamp;
 
 void setup() {
   // put your setup code here, to run once:
@@ -15,7 +16,8 @@ void loop() {
   delay(100);
   sine = sin(t);
   cosine = cos(t);
-  json = "\'sine\':" + (String) sine + "," + "\'cosine\':" + (String) cosine;
+  tstamp = (String) t;
+  json = "\"sine\":" + (String) sine + "," + "\"cosine\":" + (String) cosine;
   json = "{" + json + "}";
   //  Serial.println("{\'sine\':" + (String) sin(t) + "," + "\'cosine\':" + (String) cos(t) + "}");
   Serial.println(json);

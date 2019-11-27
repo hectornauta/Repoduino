@@ -18,7 +18,7 @@ void loop() {
   // Formación del JSON string
   json = "{";
   for(int i = 0; i < array_length; i++){
-    json = json + "\'val_" + (String) i + "\':" + (String) values[i];
+    json = json + "\"val_" + (String) i + "\":" + (String) values[i];
     if (i < array_length - 1) {
       json = json + ",";
     }
