@@ -1,5 +1,5 @@
 #include <Wire.h>
-#define kouhai 3
+#define kouhai 3 //número de este slave
 void setup()
 {
   Serial.begin(9600);

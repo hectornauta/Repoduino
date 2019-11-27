@@ -1,6 +1,6 @@
 #include <Wire.h>
-#define senpai 1 //número de este maestro
-#define kouhai 3 //número de este maestro
+#define senpai 1 //número de este master (1 y en este ejemplo)
+#define kouhai 3 //número de este slave (sólo 3 en este caso)
 void setup()
 {
   Wire.begin(senpai);
