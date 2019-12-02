@@ -7,7 +7,6 @@ byte paquete[numerodebytes];
 
 void setup()
 {
-
   Serial.begin(9600);
   Wire.begin(direccion);
   Wire.onRequest(requestEvent);
@@ -15,7 +14,6 @@ void setup()
 
 void loop()
 { 
-  delay(100);
   paquete[0] = 51; 
   paquete[1] = 90;
 }
