@@ -1,8 +1,8 @@
-int buttonpin = 22;
+int buttonpin = 2;
 int valor;
 void setup ()
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
   pinMode (buttonpin, INPUT);
 }
 void loop ()
@@ -14,7 +14,7 @@ void loop ()
   }
   else
   {
-    //digitalWrite (Led, LOW);
+    Serial.println("nada");
   }
   delay(3000);
 }
