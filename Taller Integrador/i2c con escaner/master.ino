@@ -21,7 +21,7 @@ void loop()
     if(Wire.available() == numerodebytes)
     {
       for (int i = 0; i < numerodebytes; i++) paquete[i] = Wire.read();
-      for (int j = 0; j < numerodebytes; j++) Serial.print(paquete[j]);   
+      for (int j = 0; j < numerodebytes; j++) Serial.print((char)paquete[j]);   
     }
     Serial.println();
   }
