@@ -4,10 +4,10 @@
 #include <Wire.h>
 
 // ----------------  CREDENCIALES IBM WATSON -------------------
-#define ORG "*****" // ORG IBM IoT
-#define DEVICE_ID "*******"        //  id dispositivo 
-#define DEVICE_TYPE "*******"      // tipo de dispositivo
-#define TOKEN "****X"         // Token dispositivo autognerado
+#define ORG "**********" // ORG IBM IoT
+#define DEVICE_ID "**********"        //  id dispositivo 
+#define DEVICE_TYPE "*********"      // tipo de dispositivo
+#define TOKEN "************"         // Token dispositivo autognerado
 
 char server[] = ORG ".messaging.internetofthings.ibmcloud.com";
 char TopicPub[] = "iot-2/evt/status/fmt/json"; //tópico a publicar 
@@ -27,7 +27,7 @@ IPAddress subnet(255, 255, 255, 0);
 int bytes_8 = 8; // cantidad de bytes asignados para 2 sensores (4 bytes por cada uno)
 int bytes_16 = 16; // cantidad de bytes asignados para 2 sensores particulares-> joystick (12 bytes:2 de 4 bytes por los ejes y 4 bytes por pulsador) y 4 bytes para el sensore restante.
 int cant_placas = 9; // cantidad de placas a conectar a la red I2C
-int publishInterval = 10000; // 10 segundos
+int publishInterval = 1000; // 10 segundos
 long lastPublishMillis;
 
 EthernetClient ethernetClient;
@@ -74,7 +74,7 @@ void loop() {
     String payload = construirJson(); 
     Serial.print("Enviando payload: "); Serial.println(payload);
       
-    if (client.publish(TopicPub, (char*) payload.c_str())) 
+    if (client.publish(TopicPub, (char*) payload.c_str()),true) 
     {
       Serial.println("Publicado correctamente"); // Envio correcto
     } 
